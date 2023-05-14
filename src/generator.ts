@@ -3,8 +3,11 @@ import fs from 'fs-extra';
 import {generateNegative, generatePrompt} from './prompt-gen';
 import {ipAddress} from './vm';
 import {ENV} from './env';
+import {generateSettings} from './settings-gen';
 
-export const generate = async (params: any) => {
+export const generateImage = async () => {
+    const params = generateSettings();
+    console.log(params);
     params.prompt = generatePrompt();
     params.negative_prompt = generateNegative();
 

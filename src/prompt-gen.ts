@@ -1,5 +1,6 @@
-import TAGS from '../data/tags.json';
-import {ENV} from './env';
+import {ENV, getTAGS} from './env';
+
+const TAGS = getTAGS();
 
 export const generatePrompt = () => {
   const randomPart = Object.keys(TAGS).map((key) => {

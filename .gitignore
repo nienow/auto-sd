@@ -1,6 +1,5 @@
 node_modules/
 .idea/
-data/
 *.iml
 .env
 scratch.txt
