@@ -8,27 +8,45 @@
   "save_images": false,
   "denoising_strength": {
     "type": "decimal",
-    "range": [0.3, 1],
+    "range": [
+      0.3,
+      1
+    ],
     "bell_curve": 0.7
   },
   "hr_second_pass_steps": {
     "type": "int",
-    "range": [3, 50],
+    "range": [
+      3,
+      50
+    ],
     "bell_curve": 15
   },
   "hr_upscaler": {
-    "choices": ["ESRGAN_4x", "Latent"]
+    "choices": [
+      "ESRGAN_4x",
+      "Latent"
+    ]
   },
   "sampler_name": {
-    "choices": [""]
+    "choices": [
+      "Euler a",
+      "DPM++ SDE Karras",
+      "DPM++ SDE"
+    ]
   },
-  "sampler_index": "Euler",
   "steps": {
     "type": "int",
-    "range": [10, 50]
+    "range": [
+      10,
+      50
+    ]
   },
   "cfg_scale": {
     "type": "int",
-    "range": [1, 9]
+    "range": [
+      1,
+      9
+    ]
   }
 }

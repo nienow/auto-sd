@@ -1,0 +1,15 @@
+{
+  "enable_hr": false,
+  "hr_scale": 1,
+  "width": 512,
+  "height": 512,
+  "do_not_save_samples": true,
+  "do_not_save_grid": true,
+  "save_images": false,
+  "denoising_strength": 0.7,
+  "hr_second_pass_steps": 20,
+  "hr_upscaler": "Latent",
+  "sampler_name": "Euler a",
+  "steps": 20,
+  "cfg_scale": 4
+}
