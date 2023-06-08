@@ -1,18 +1,20 @@
 import CONFIG from './config.json';
 import {generateImage} from './generator';
-import {startup} from './vm';
+import {vmFactory} from './vm/vm';
 
 let runsLeft = CONFIG.runs;
 
 const doGenerate = () => {
-    if (runsLeft > 0) {
-        runsLeft --;
-        generateImage().then(() => {
-            doGenerate();
-        });
-    }
-}
+  if (runsLeft > 0) {
+    runsLeft--;
+    generateImage().then(() => {
+      doGenerate();
+    });
+  }
+};
 
-startup().then(() => {
-    doGenerate();
+const args = process.argv.slice(2);
+
+vmFactory(args[0]).startup().then(() => {
+  doGenerate();
 });

@@ -1,9 +1,9 @@
 import CONFIG from './config.json';
 import fs from 'fs-extra';
 import {generateNegative, generatePrompt} from './prompt-gen';
-import {ipAddress} from './vm';
 import {ENV} from './env';
 import {generateSettings} from './settings-gen';
+import {vm} from './vm/vm';
 
 export const generateImage = async () => {
   const params = generateSettings();
@@ -11,7 +11,7 @@ export const generateImage = async () => {
   params.prompt = generatePrompt();
   params.negative_prompt = generateNegative();
 
-  const result = await fetch(`http://${ipAddress}:${CONFIG.port}/sdapi/v1/txt2img`, {
+  const result = await fetch(`http://${vm.ipAddress}:${CONFIG.port}/sdapi/v1/txt2img`, {
     method: 'POST',
     body: JSON.stringify(params),
     headers: {
@@ -19,8 +19,12 @@ export const generateImage = async () => {
     }
   }).then(res => res.json());
 
-  const filename = new Date().getTime();
-  fs.writeFileSync(`${ENV.OUTPUT}/${filename}.png`, new Buffer(result.images[0], 'base64'));
+  if (result.images) {
+    const filename = new Date().getTime();
+    fs.writeFileSync(`${ENV.OUTPUT}/${filename}.png`, Buffer.from(result.images[0], 'base64'));
+  } else {
+    console.log(result);
+  }
 
   // fs.outputFileSync(`${path}/${filename}.txt`, JSON.stringify(params));
 

@@ -1,5 +1,7 @@
-import {shutdown} from './vm';
+import {vmFactory} from './vm/vm';
 
-shutdown().then(() => {
+const args = process.argv.slice(2);
+
+vmFactory(args[0]).shutdown().then(() => {
   console.log('Shutdown!');
 });

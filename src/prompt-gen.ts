@@ -27,8 +27,11 @@ const randomValue = (obj) => {
 };
 
 const propToTag = (prop: any) => {
-  if (prop.length === 3 && prop[2] !== 1) {
-    return `(${prop[0]}: ${prop[2]})`;
+  if (!prop[0]) {
+    return '';
+  }
+  if (prop.length > 1 && prop[1] !== 1) {
+    return prop[0].split(',').map(part => `(${part}: ${prop[1]})`).join(',');
   } else {
     return prop[0];
   }

@@ -9,44 +9,55 @@
   "denoising_strength": {
     "type": "decimal",
     "range": [
-      0.3,
-      1
+      0.1,
+      0.9
     ],
     "bell_curve": 0.7
   },
   "hr_second_pass_steps": {
     "type": "int",
     "range": [
-      3,
-      50
+      10,
+      25
     ],
     "bell_curve": 15
   },
   "hr_upscaler": {
     "choices": [
       "ESRGAN_4x",
-      "Latent"
+      "R-ESRGAN 4x+",
+      "R-ESRGAN 4x+ Anime6B",
+      "Lanczos",
+      "Latent",
+      "4x-UltraSharp"
     ]
   },
   "sampler_name": {
     "choices": [
       "Euler a",
       "DPM++ SDE Karras",
-      "DPM++ SDE"
+      "DPM++ SDE",
+      "DPM++ 2M Karras"
     ]
   },
   "steps": {
     "type": "int",
     "range": [
       10,
-      50
+      40
     ]
   },
   "cfg_scale": {
     "type": "int",
     "range": [
-      1,
-      9
+      3,
+      10
+    ]
+  },
+  "restore_faces": {
+    "choices": [
+      true,
+      false
     ]
   }
 }

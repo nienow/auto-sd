@@ -1,8 +1,9 @@
 import fs from 'fs-extra';
 
-require("dotenv").config();
+require('dotenv').config();
 
 export const ENV = {
+  VM_TYPE: process.env['VM_TYPE'] as 'gcp' | 'aws',
   OUTPUT: process.env['OUTPUT_DIR'],
   PROJECT: process.env['PROJECT_ID'],
   ZONE: process.env['ZONE_ID'],
@@ -11,6 +12,8 @@ export const ENV = {
   BASE_NEG: process.env['BASE_NEGATIVE'],
   TAGS: process.env['TAGS_JSON'],
   MODELS: process.env['MODELS_JSON'],
+  AWS_REGION: process.env['AWS_REGION'],
+  AWS_LAUNCH_TEMPLATE: process.env['AWS_LAUNCH_TEMPLATE'],
 };
 
 export const getTAGS = (): any => {
