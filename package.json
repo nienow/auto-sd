@@ -4,7 +4,8 @@
   "scripts": {
     "startup": "ts-node src/startup.ts",
     "shutdown": "ts-node src/shutdown.ts",
-    "run": "ts-node src/index.ts"
+    "run": "ts-node src/index.ts",
+    "test": "ts-node src/test.ts"
   },
   "dependencies": {
   },

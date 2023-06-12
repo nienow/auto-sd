@@ -1,44 +1,17 @@
-import {ENV, getTAGS} from './env';
+import {ENV} from './env';
+import {getRandomVerse} from './bible';
+import {getTagsInCategories} from './tags/tag-parser-factory';
 
-const TAGS = getTAGS();
-
+const TAG_CATEGORIES = getTagsInCategories();
 export const generatePrompt = () => {
-  const randomPart = Object.keys(TAGS).map((key) => {
-    return randomValue(TAGS[key]);
+  const prompt = TAG_CATEGORIES.map(cat => {
+    return cat.randomTagByProbability().getOutput();
   }).filter((str) => !!str).join(',');
-  console.log('Generating', randomPart);
-
-  return randomPart;
+  console.log('Generating', prompt);
+  const verse = getRandomVerse();
+  return verse + ',' + prompt;
 };
 
 export const generateNegative = () => {
   return ENV.BASE_NEG;
-};
-
-const randomValue = (obj) => {
-  while (true) {
-    const prop = randomProperty(obj);
-    const randomWeight = Math.random();
-    const weight = prop[2] || 1;
-    if (weight > randomWeight) {
-      return propToTag(prop);
-    }
-  }
-};
-
-const propToTag = (prop: any) => {
-  if (!prop[0]) {
-    return '';
-  }
-  if (prop.length > 1 && prop[1] !== 1) {
-    return prop[0].split(',').map(part => `(${part}: ${prop[1]})`).join(',');
-  } else {
-    return prop[0];
-  }
-};
-
-const randomProperty = (obj) => {
-  const keys = Object.keys(obj);
-  return obj[keys[keys.length * Math.random() << 0]];
-
 };

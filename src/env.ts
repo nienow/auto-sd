@@ -16,9 +16,9 @@ export const ENV = {
   AWS_LAUNCH_TEMPLATE: process.env['AWS_LAUNCH_TEMPLATE'],
 };
 
-export const getTAGS = (): any => {
-  return JSON.parse(fs.readFileSync(ENV.TAGS, {encoding: 'utf8'}));
-};
+// export const getTAGS = (): any => {
+//   return JSON.parse(fs.readFileSync(ENV.TAGS, {encoding: 'utf8'}));
+// };
 
 export const getMODELS = (): any => {
   return JSON.parse(fs.readFileSync(ENV.MODELS, {encoding: 'utf8'}));
