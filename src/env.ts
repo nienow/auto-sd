@@ -12,6 +12,7 @@ export const ENV = {
   BASE_NEG: process.env['BASE_NEGATIVE'],
   TAGS: process.env['TAGS_JSON'],
   MODELS: process.env['MODELS_JSON'],
+  SETTINGS: process.env['SETTINGS_JSON'],
   AWS_REGION: process.env['AWS_REGION'],
   AWS_LAUNCH_TEMPLATE: process.env['AWS_LAUNCH_TEMPLATE'],
 };

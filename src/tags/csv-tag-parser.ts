@@ -17,6 +17,8 @@ export class CsvTagParser {
       const line = rawLine.trim();
       if (!line) {
         pushCat();
+      } else if (line.startsWith('# ')) {
+        // comment - ignore
       } else {
         const parts = line.split(';');
         catTags.push(new Tag(null, parts[0], Number(parts[1] || 1), Number(parts[2] || 1)));

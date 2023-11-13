@@ -13,6 +13,7 @@ export class AWSOperators extends VMOperations {
     let instance = await describeInstance();
     console.log('current state: ' + instance.State.Name);
     if (instance.State.Name !== 'stopped') {
+      this.ipAddress = instance.PublicIpAddress;
       console.log('IP: ' + instance.PublicIpAddress);
       return;
     }

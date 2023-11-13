@@ -1,4 +1,7 @@
-import SETTINGS from '../data/settings.json';
+import {ENV} from './env';
+import {readFileSync} from 'fs-extra';
+
+const SETTINGS = JSON.parse(readFileSync(ENV.SETTINGS, {encoding: 'utf-8'}));
 
 export const generateSettings = () => {
   const settings: any = {};
@@ -23,7 +26,6 @@ export const generateSettings = () => {
   return settings;
 };
 
-
 const getRandomValueBetween = (min, max) => {
   return Math.random() * (max - min) + min;
 };
@@ -33,5 +35,5 @@ const getRandomIntBetween = (min, max) => {
 };
 
 const randomItemInArray = (arr) => {
-  return arr[ arr.length * Math.random() << 0];
+  return arr[arr.length * Math.random() << 0];
 };
