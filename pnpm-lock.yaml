@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 devDependencies:
   '@aws-sdk/client-ec2':
     specifier: ^3.332.0
@@ -19,6 +23,9 @@ devDependencies:
   fs-extra:
     specifier: ^11.1.0
     version: 11.1.1
+  js-yaml:
+    specifier: ^4.1.0
+    version: 4.1.0
   ts-node:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@18.16.8)(typescript@4.9.5)
@@ -1417,6 +1424,13 @@ packages:
   /is-stream@2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /js-yaml@4.1.0:
+    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
+    hasBin: true
+    dependencies:
+      argparse: 2.0.1
     dev: true
 
   /js2xmlparser@4.0.2:

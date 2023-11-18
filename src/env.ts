@@ -13,6 +13,7 @@ export const ENV = {
   TAGS: process.env['TAGS_JSON'],
   MODELS: process.env['MODELS_JSON'],
   SETTINGS: process.env['SETTINGS_JSON'],
+  WILDCARDS: process.env['WILDCARDS'],
   AWS_REGION: process.env['AWS_REGION'],
   AWS_LAUNCH_TEMPLATE: process.env['AWS_LAUNCH_TEMPLATE'],
 };
