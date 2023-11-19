@@ -6,8 +6,17 @@ export const generatePrompt = (params: any) => {
   const prompt = TAG_CATEGORIES.map(cat => {
     const tag = cat.randomTagByProbability();
     if (tag.pose) {
-      params.controlnet_input_image = [tag.pose[1]];
-      params.controlnet_model = tag.pose[0];
+      params.alwayson_scripts = {
+        controlnet: {
+          args: [
+            {
+              input_image: tag.pose[1],
+              model: 'depth',
+              module: 'depth'
+            }
+          ]
+        }
+      };
     }
     return tag.getOutput();
   }).filter((str) => !!str).join(',');
