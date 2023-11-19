@@ -14,6 +14,7 @@ export const ENV = {
   MODELS: process.env['MODELS_JSON'],
   SETTINGS: process.env['SETTINGS_JSON'],
   WILDCARDS: process.env['WILDCARDS'],
+  POSES: process.env['POSES'],
   AWS_REGION: process.env['AWS_REGION'],
   AWS_LAUNCH_TEMPLATE: process.env['AWS_LAUNCH_TEMPLATE'],
 };

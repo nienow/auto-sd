@@ -8,7 +8,7 @@ import {vm} from './vm/vm';
 export const generateImage = async () => {
   const params = generateSettings();
   // const params = fastSettings as any;
-  params.prompt = generatePrompt();
+  params.prompt = generatePrompt(params);
   params.negative_prompt = generateNegative();
 
   const result = await fetch(`http://${vm.ipAddress}:${CONFIG.port}/sdapi/v1/txt2img`, {

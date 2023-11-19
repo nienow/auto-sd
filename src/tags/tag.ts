@@ -1,6 +1,6 @@
 // export type Tag = {text: string; weight: number; probability: number};
 
-import {replaceWildcard} from './tag-wildcards';
+import {getPose, replaceWildcard} from './tag-wildcards';
 
 export class TagCat {
   constructor(public name: string, public tags: Tag[]) {
@@ -22,20 +22,18 @@ export class TagCat {
 
 export class Tag {
   private parts: string[];
+  public pose: string[];
 
   constructor(public name: string, text: string, public weight: number, public probability: number) {
-    this.parts = text.split(',').map(part => part.trim());
-  }
-
-  public isWildcard() {
-    return this.parts[0] === '*';
+    this.parts = text.split(',').map(part => {
+      return part.trim().replace(/\[pose\.(.*?)\]/g, (_, p1) => {
+        this.pose = getPose(p1);
+        return '';
+      });
+    }).filter(part => !!part);
   }
 
   public getOutput() {
-    if (this.isWildcard()) {
-      return '';
-    }
-
     // replace variables
     const parts = this.parts.map(part => {
       return part.replace(/\[(.*?)\]/g, (_, p1) => {
