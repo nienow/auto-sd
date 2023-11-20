@@ -22,7 +22,7 @@ export class TagCat {
 
 export class Tag {
   private parts: string[];
-  public pose: string[];
+  public pose: any[];
 
   constructor(public name: string, text: string, public weight: number, public probability: number) {
     this.parts = text.split(',').map(part => {

@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
 import {basePath, getFile, settings} from '../settings';
+import sizeOf from 'image-size';
 
 const doc = yaml.load(getFile(settings.wildcards));
 
@@ -23,6 +24,8 @@ export const replaceWildcard = (key: string) => {
 
 export const getPose = (key: string) => {
   const keys = key.split('.');
-  const buf = fs.readFileSync(`${basePath}/${settings.poses}/${keys[0]}/${keys[1]}.png`);
-  return [keys[0], Buffer.from(buf).toString('base64')];
+  const filePath = `${basePath}/${settings.poses}/${keys[0]}/${keys[1]}.png`;
+  const dimensions = sizeOf(filePath);
+  const buf = fs.readFileSync(filePath);
+  return [keys[0], Buffer.from(buf).toString('base64'), dimensions];
 };

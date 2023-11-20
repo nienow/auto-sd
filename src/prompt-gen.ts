@@ -17,6 +17,8 @@ export const generatePrompt = (tagCats: any, params: any) => {
           ]
         }
       };
+      params.width = tag.pose[2].width;
+      params.height = tag.pose[2].height;
     }
     return tag.getOutput();
   }).filter((str) => !!str).join(',');
