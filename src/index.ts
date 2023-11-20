@@ -1,8 +1,8 @@
-import CONFIG from './config.json';
 import {generateImage} from './generator';
 import {vmFactory} from './vm/vm';
+import {settings} from './settings';
 
-let runsLeft = CONFIG.runs;
+let runsLeft = settings.runs;
 
 const doGenerate = () => {
   if (runsLeft > 0) {
@@ -13,8 +13,6 @@ const doGenerate = () => {
   }
 };
 
-const args = process.argv.slice(2);
-
-vmFactory(args[0]).startup().then(() => {
+vmFactory().startup().then(() => {
   doGenerate();
 });

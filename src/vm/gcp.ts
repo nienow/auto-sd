@@ -1,18 +1,21 @@
 import {InstancesClient, ZoneOperationsClient} from '@google-cloud/compute';
 import * as child_process from 'child_process';
-import {ENV} from '../env';
-import CONFIG from '../config.json';
 import {waitForAuto1111} from '../auto';
 import {VMOperations} from './abstract-vm';
+import {settings} from '../settings';
 
 const TERMINATED = 'TERMINATED';
-const INSTANCE1 = {instance: ENV.INSTANCE, zone: ENV.ZONE, project: ENV.PROJECT};
+const INSTANCE1 = {instance: settings.gcpInstance, zone: settings.gcpZone, project: settings.gcpProject};
 
 // let instanceRecord;
 const instancesClient = new InstancesClient();
 const operationsClient = new ZoneOperationsClient();
 
 export class GCPOperations extends VMOperations {
+  public setIpAddress(ip: string) {
+    this.ipAddress = ip;
+  }
+
   public async startup() {
     let [result] = await instancesClient.get(INSTANCE1);
     console.log('current: ' + result.status);
@@ -25,7 +28,7 @@ export class GCPOperations extends VMOperations {
     console.log('IP: ' + this.ipAddress);
 
     await waitForAuto1111();
-    console.log(`auto running: http://${this.ipAddress}:${CONFIG.port}`);
+    console.log(`auto running: http://${this.ipAddress}:${settings.port}`);
     // await runAuto();
   }
 
@@ -35,8 +38,8 @@ export class GCPOperations extends VMOperations {
     while (operation.status !== 'DONE') {
       [operation] = await operationsClient.wait({
         operation: operation.name,
-        project: ENV.PROJECT,
-        zone: ENV.ZONE,
+        project: settings.gcpProject,
+        zone: settings.gcpZone,
       });
     }
   }
@@ -45,7 +48,7 @@ export class GCPOperations extends VMOperations {
 export const runAuto = () => {
   return new Promise((resolve) => {
     const listening = child_process.spawn('gcloud',
-      ['compute', 'ssh', ENV.INSTANCE, '--command', '"stable-diffusion-webui/webui.sh --listen --xformers --api"']);
+      ['compute', 'ssh', settings.gcpInstance, '--command', '"stable-diffusion-webui/webui.sh --listen --xformers --api"']);
 
     listening.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
@@ -74,8 +77,8 @@ const startVM = async () => {
   while (operation?.status !== 'DONE') {
     [operation] = await operationsClient.wait({
       operation: operation.name,
-      project: ENV.PROJECT,
-      zone: ENV.ZONE,
+      project: settings.gcpProject,
+      zone: settings.gcpZone,
     });
   }
 };

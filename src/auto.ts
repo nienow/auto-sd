@@ -1,5 +1,5 @@
-import CONFIG from './config.json';
 import {vm} from './vm/vm';
+import {settings} from './settings';
 
 export const waitForAuto1111 = async () => {
   for (let attemps = 0; attemps < 20; attemps++) {
@@ -42,5 +42,5 @@ export const refreshModels = async () => {
 };
 
 const apiUrl = (path: string) => {
-  return `http://${vm.ipAddress}:${CONFIG.port}/sdapi/v1/${path}`;
+  return `http://${vm.ipAddress}:${settings.port}/sdapi/v1/${path}`;
 };

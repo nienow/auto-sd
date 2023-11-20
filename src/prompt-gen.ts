@@ -1,9 +1,7 @@
-import {ENV} from './env';
-import {getTagsInCategories} from './tags/tag-parser-factory';
+import {settings} from './settings';
 
-const TAG_CATEGORIES = getTagsInCategories();
-export const generatePrompt = (params: any) => {
-  const prompt = TAG_CATEGORIES.map(cat => {
+export const generatePrompt = (tagCats: any, params: any) => {
+  const prompt = tagCats.map(cat => {
     const tag = cat.randomTagByProbability();
     if (tag.pose) {
       params.alwayson_scripts = {
@@ -12,7 +10,9 @@ export const generatePrompt = (params: any) => {
             {
               input_image: tag.pose[1],
               model: 'depth',
-              module: 'depth'
+              module: 'depth',
+              resize_mode: 'Envelope (Outer Fit)', // Scale to Fit (Inner Fit) | Just Resize
+              control_mode: 'ControlNet is more important' // Balanced | My prompt is more important
             }
           ]
         }
@@ -27,5 +27,5 @@ export const generatePrompt = (params: any) => {
 };
 
 export const generateNegative = () => {
-  return ENV.BASE_NEG;
+  return settings.negative;
 };

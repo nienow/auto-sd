@@ -1,12 +1,7 @@
-import {ENV} from './env';
-import {readFileSync} from 'fs-extra';
-
-const SETTINGS = JSON.parse(readFileSync(ENV.SETTINGS, {encoding: 'utf-8'}));
-
-export const generateSettings = () => {
+export const generateSettings = (settingsConfig: any = {}) => {
   const settings: any = {};
-  Object.keys(SETTINGS).forEach(key => {
-    const value = SETTINGS[key] as any;
+  Object.keys(settingsConfig).forEach(key => {
+    const value = settingsConfig[key] as any;
     if (typeof value === 'object') {
       if (value.range) {
         if (value.type === 'int') {

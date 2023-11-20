@@ -1,8 +1,8 @@
-import {ENV} from '../env';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
+import {basePath, getFile, settings} from '../settings';
 
-const doc = yaml.load(fs.readFileSync(ENV.WILDCARDS, 'utf8'));
+const doc = yaml.load(getFile(settings.wildcards));
 
 export const replaceWildcard = (key: string) => {
   let obj = doc;
@@ -23,6 +23,6 @@ export const replaceWildcard = (key: string) => {
 
 export const getPose = (key: string) => {
   const keys = key.split('.');
-  const buf = fs.readFileSync(`${ENV.POSES}/${keys[0]}/${keys[1]}.png`);
+  const buf = fs.readFileSync(`${basePath}/${settings.poses}/${keys[0]}/${keys[1]}.png`);
   return [keys[0], Buffer.from(buf).toString('base64')];
 };

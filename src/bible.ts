@@ -21,3 +21,8 @@ export const getBible = (): Bible => {
 export const getRandomVerse = (): string => {
   return verses[verses.length * Math.random() << 0];
 };
+
+let currentVerse = 0;
+export const getNextVerse = () => {
+  return verses[currentVerse++];
+};
