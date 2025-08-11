@@ -7,18 +7,16 @@
     "run": "ts-node src/index.ts",
     "test": "ts-node src/test.ts"
   },
-  "dependencies": {
-  },
   "devDependencies": {
-    "@aws-sdk/client-ec2": "^3.332.0",
-    "@google-cloud/compute": "^3.9.1",
-    "@types/fs-extra": "^11.0.1",
-    "@types/node": "^18.14.4",
-    "dotenv": "^16.0.3",
-    "fs-extra": "^11.1.0",
-    "image-size": "^1.0.2",
+    "@aws-sdk/client-ec2": "^3.864.0",
+    "@google-cloud/compute": "^6.1.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.2.1",
+    "dotenv": "^17.2.1",
+    "fs-extra": "^11.3.1",
+    "image-size": "^2.0.2",
     "js-yaml": "^4.1.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
